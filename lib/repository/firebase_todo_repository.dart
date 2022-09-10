@@ -14,7 +14,7 @@ class FirebaseTodosRepository implements PostRepository {
   @override
   Stream<List<Post>> post() {
     return postCollection.snapshots().map((snapshot) {
-      return snapshot.docChanges
+      return snapshot.docs
           .map((doc) => Post.fromEntity(PostEntity.fromSnapshot(doc)))
           .toList();
     });
