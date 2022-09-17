@@ -32,10 +32,10 @@ class Post extends Equatable {
     this.image = '',
     required this.date,
     required this.user,
-  })  : assert(
+  })  : /*assert(
   id == null,
   'id can not be null and should be empty',
-  ),
+  ),*/
         id = id ?? const Uuid().v4();
 
   /// The unique identifier of the todo.

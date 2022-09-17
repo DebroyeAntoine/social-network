@@ -3,11 +3,14 @@ import 'package:social_network/repository/post_entity.dart';
 import 'package:social_network/repository/post_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class FirebaseTodosRepository implements PostRepository {
-  final postCollection = FirebaseFirestore.instance.collection('todos');
+class FireBasePostRepository implements PostRepository {
+  final postCollection = FirebaseFirestore.instance.collection('posts');
+  final usersCollection = FirebaseFirestore.instance.collection('users');
 
   @override
   Future<void> addNewPost(Post post) {
+    var ref = postCollection.doc();
+    post.copyWith(id:ref.id);
     return postCollection.add(post.toEntity().toDocument());
   }
 
