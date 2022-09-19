@@ -6,7 +6,6 @@ import 'package:social_network/presentation/bottom_nav_bar_view.dart';
 import 'package:social_network/presentation/sign_in.dart';
 
 import '../bloc/bloc/auth_bloc.dart';
-import 'dashboard.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -39,7 +38,7 @@ class _SignUpState extends State<SignUp> {
             // Navigating to the dashboard screen if the user is authenticated
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => BottomNavBarView(),
+                builder: (context) => const BottomNavBarView(),
               ),
             );
           }

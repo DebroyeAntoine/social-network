@@ -6,9 +6,6 @@ class AuthRepository{
 
   Future<void> signUp({required String email, required String password}) async {
     try {
-      var Result = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
-      print(Result);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         throw Exception('The password provided is too weak.');
@@ -26,8 +23,6 @@ class AuthRepository{
     required String password,
   }) async {
     try {
-      var Result = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'unknown') {
         throw Exception('No user found for that email.');

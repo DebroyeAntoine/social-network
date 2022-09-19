@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_network/bloc/bottom_nav_bar_cubit.dart';
 
-import 'EditPost.dart';
-import 'ProfileView.dart';
+import 'edit_post.dart';
+import 'profile_view.dart';
 import 'dashboard.dart';
 
 class BottomNavBarView extends StatelessWidget {
+  const BottomNavBarView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -15,7 +17,7 @@ class BottomNavBarView extends StatelessWidget {
           return Scaffold(
             body: IndexedStack(
               index: state,
-              children: [
+              children: const [
                 Dashboard(),
                 ProfileView(),
               ],

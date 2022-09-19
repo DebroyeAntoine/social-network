@@ -5,7 +5,6 @@ import 'package:social_network/presentation/bottom_nav_bar_view.dart';
 import 'package:social_network/presentation/sign_up.dart';
 
 import '../bloc/bloc/auth_bloc.dart';
-import 'dashboard.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -37,7 +36,7 @@ class _SignInState extends State<SignIn> {
           if (state is Authenticated) {
             // Navigating to the dashboard screen if the user is authenticated
             Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => BottomNavBarView()));
+                MaterialPageRoute(builder: (context) => const BottomNavBarView()));
           }
           if (state is AuthError) {
             // Showing the error message if the user has entered invalid credentials

@@ -102,7 +102,7 @@ class Post extends Equatable {
       description: entity.description,
       id: entity.id,
       date: entity.date,
-      image: entity.image ?? '',
+      image: entity.image,
       user: entity.user,
     );
   }

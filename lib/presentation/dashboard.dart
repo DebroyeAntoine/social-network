@@ -1,11 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_network/bloc/post_bloc.dart';
 import 'package:social_network/presentation/sign_in.dart';
-import 'package:social_network/repository/firebase_post_repository.dart';
 import 'package:social_network/repository/post_repository.dart';
-import '../widgets/post.dart';
 
 import '../bloc/bloc/auth_bloc.dart';
 
@@ -15,7 +12,7 @@ class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Getting the user from the FirebaseAuth Instance
-    final user = FirebaseAuth.instance.currentUser!;
+    //final user = FirebaseAuth.instance.currentUser!;
     return BlocProvider(
         create: (BuildContext context) =>
             PostBloc(postRepository: context.read<PostRepository>()),
@@ -30,7 +27,7 @@ class Dashboard extends StatelessWidget {
               if (state is UnAuthenticated) {
                 // Navigate to the sign in screen when the user Signs Out
                 Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => SignIn()),
+                  MaterialPageRoute(builder: (context) => const SignIn()),
                       (route) => false,
                 );
               }
@@ -107,7 +104,7 @@ Widget _postAuthorRow() {
         child: Container(
           width: avatarDiameter,
           height: avatarDiameter,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.blue,
             shape: BoxShape.circle,
           ),
@@ -120,7 +117,7 @@ Widget _postAuthorRow() {
           ),
         ),
       ),
-      Text(
+      const Text(
         'User Test',
         style: TextStyle(
           fontWeight: FontWeight.bold,
