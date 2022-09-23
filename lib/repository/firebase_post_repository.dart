@@ -29,4 +29,13 @@ class FireBasePostRepository implements PostRepository {
         .doc(update.id)
         .update(update.toEntity().toDocument());
   }
+
+  static const _delay = Duration(milliseconds: 300);
+  Future<void> wait() => Future.delayed(_delay);
+
+  @override
+  Future<List<String>> fetchSports() async {
+    await wait();
+    return ['Vélo', 'Course à pieds', 'Natation'];
+  }
 }

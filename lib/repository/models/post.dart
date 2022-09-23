@@ -32,6 +32,7 @@ class Post extends Equatable {
     this.image = '',
     required this.date,
     required this.user,
+    required this.sport,
   })  : /*assert(
   id == null,
   'id can not be null and should be empty',
@@ -47,6 +48,8 @@ class Post extends Equatable {
   ///
   /// Note that the title may be empty.
   final String description;
+
+  final String sport;
 
   /// The description of the todo.
   ///
@@ -70,6 +73,7 @@ class Post extends Equatable {
     String? image,
     Timestamp? date,
     String? user,
+    String? sport,
   }) {
     return Post(
       id: id ?? this.id,
@@ -77,6 +81,7 @@ class Post extends Equatable {
       image: image ?? this.image,
       date: date ?? this.date,
       user: user ?? this.user,
+      sport: sport ?? this.sport,
     );
   }
 
@@ -87,14 +92,14 @@ class Post extends Equatable {
   JsonMap toJson() => _$PostToJson(this);
 
   @override
-  List<Object> get props => [id, description, image, date, user];
+  List<Object> get props => [id, description, image, date, user, sport];
 
   static int _toJson(Timestamp time) => time.millisecondsSinceEpoch;
   static Timestamp _fromJson (int time) =>
       Timestamp.fromMicrosecondsSinceEpoch(time);
 
   PostEntity toEntity() {
-    return PostEntity(id, description, date, user, image);
+    return PostEntity(id, description, date, user, image, sport);
   }
 
   static Post fromEntity(PostEntity entity) {
@@ -104,6 +109,7 @@ class Post extends Equatable {
       date: entity.date,
       image: entity.image,
       user: entity.user,
+      sport: entity.sport,
     );
   }
 }

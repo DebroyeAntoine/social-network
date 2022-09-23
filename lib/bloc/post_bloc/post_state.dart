@@ -16,7 +16,9 @@ class PostState extends Equatable {
     this.description = '',
     this.user = 'tmp',
     this.image = 'ii',
-    this.initialPost
+    this.initialPost,
+    this.sports = const <String>[],
+    this.sport,
 
   });
 
@@ -28,6 +30,8 @@ class PostState extends Equatable {
   final String image;
   final Timestamp date;
   final String description;
+  final List<String> sports;
+  final String? sport;
 
   PostState copyWith({
     PostStatus? status,
@@ -35,7 +39,9 @@ class PostState extends Equatable {
     Post? initialPost,
     String? user,
     String? image,
-    Timestamp? date
+    Timestamp? date,
+    String? sport,
+    List<String>? sports,
   }) {
     return PostState(
       date: date ?? this.date,
@@ -44,9 +50,15 @@ class PostState extends Equatable {
       description: description ?? this.description,
       user: user ?? this.user,
       image: image ?? this.image,
+      sport: sport ?? this.sport,
+      sports: sports ?? this.sports,
     );
   }
 
+   PostState.sportsLoadSuccess({required List<String> sports})
+      : this(sports: sports, date: Timestamp.now());
+
+
   @override
-  List<Object?> get props => [status, description, initialPost, image, user, date];
+  List<Object?> get props => [status, description, initialPost, image, user, date, sport, sports];
 }

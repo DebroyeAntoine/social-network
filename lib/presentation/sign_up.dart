@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_network/presentation/bottom_nav_bar_view.dart';
 import 'package:social_network/presentation/sign_in.dart';
 
-import '../bloc/bloc/auth_bloc.dart';
+import '../bloc/auth_bloc/auth_bloc.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);

@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:social_network/repository/models/post.dart';
 
-import '../repository/post_repository.dart';
+import '../../repository/post_repository.dart';
 
 part 'post_event.dart';
 part 'post_state.dart';
@@ -19,8 +19,27 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       ) {
     on<PostDescriptionChanged>(_onDescriptionChanged);
     on<PostSubmitted>(_onSubmitted);
+    on<NewPostLoaded>(_onNewPostLoaded);
+    on<PostSportChanged>(_onPostSportChanged);
   }
   final PostRepository _postRepository;
+
+  Future<void> _onNewPostLoaded(
+      NewPostLoaded event,
+      Emitter<PostState> emit,
+      ) async {
+    final sports = await _postRepository.fetchSports();
+    emit(PostState.sportsLoadSuccess(sports: sports));
+  }
+
+  Future<void> _onPostSportChanged(
+      PostSportChanged event,
+      Emitter<PostState> emit,
+      ) async {
+    emit(
+      state.copyWith(sports: state.sports,sport: event.sport)
+      );
+  }
 
   void _onDescriptionChanged(
       PostDescriptionChanged event,
@@ -35,7 +54,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       ) async {
     //emit(state.copyWith(status: PostStatus.loading));
     final post = (state.initialPost ?? Post(description: '', user: 'antoine',
-        date: Timestamp.now(), id: '')).copyWith(
+        date: Timestamp.now(), id: '', sport: 'vélo')).copyWith(
       description: state.description,
 
     );

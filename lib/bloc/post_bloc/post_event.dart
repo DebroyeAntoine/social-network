@@ -4,7 +4,7 @@ abstract class PostEvent extends Equatable {
   const PostEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class PostDescriptionChanged extends PostEvent {
@@ -16,6 +16,19 @@ class PostDescriptionChanged extends PostEvent {
   List<Object> get props => [description];
 }
 
+class PostSportChanged extends PostEvent {
+  const PostSportChanged({this.sport});
+
+  final String? sport;
+
+  @override
+  List<Object?> get props => [sport];
+  }
+
 class PostSubmitted extends PostEvent {
   const PostSubmitted();
+}
+
+class NewPostLoaded extends PostEvent {
+  const NewPostLoaded();
 }

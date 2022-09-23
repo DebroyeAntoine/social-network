@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social_network/bloc/post_bloc.dart';
+import 'package:social_network/bloc/post_bloc/post_bloc.dart';
 import 'package:social_network/presentation/sign_in.dart';
 import 'package:social_network/repository/post_repository.dart';
 
-import '../bloc/bloc/auth_bloc.dart';
+import '../bloc/auth_bloc/auth_bloc.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);

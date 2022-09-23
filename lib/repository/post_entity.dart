@@ -9,8 +9,10 @@ class PostEntity extends Equatable {
   final Timestamp date;
   final String user;
   final String image;
+  final String sport;
 
-  const PostEntity(this.id, this.description, this.date, this.user, this.image);
+  const PostEntity(this.id, this.description, this.date, this.user, this.image,
+      this.sport);
 
   Map<String, Object> toJson() {
     return {
@@ -19,12 +21,13 @@ class PostEntity extends Equatable {
       'image': image,
       'description': description,
       'id': id,
+      'sport': sport,
     };
   }
 
   @override
   String toString() {
-    return 'PostEntity { date: $date, user: $user, image: $image, '
+    return 'PostEntity { date: $date, sport: $sport user: $user, image: $image, '
         'description: $description, id: $id }';
   }
 
@@ -35,6 +38,7 @@ class PostEntity extends Equatable {
       json['date'] as Timestamp,
       json['image'] as String,
       json['user'] as String,
+      json['sport'] as String,
     );
   }
 
@@ -45,6 +49,7 @@ class PostEntity extends Equatable {
       snap.get('image'),
       snap.get('date'),
       snap.get('user'),
+      snap.get('sport'),
     );
   }
 
@@ -53,12 +58,13 @@ class PostEntity extends Equatable {
       'description': description,
       'image': image,
       'user': user,
-      'date': date
+      'date': date,
+      'sport': sport,
     };
   }
 
   @override
   // TODO: implement props
-  List<Object?> get props => [id, description, image, user, date];
+  List<Object?> get props => [id, description, image, user, date, sport];
 
 }

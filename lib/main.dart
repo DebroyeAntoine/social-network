@@ -4,7 +4,7 @@ import 'package:social_network/presentation/sign_in.dart';
 import 'package:social_network/repository/firebase_post_repository.dart';
 import 'package:social_network/repository/post_repository.dart';
 
-import 'bloc/bloc/auth_bloc.dart';
+import 'bloc/auth_bloc/auth_bloc.dart';
 import 'data/repositories/auth_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
