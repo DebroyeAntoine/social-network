@@ -41,17 +41,30 @@ class EditPostView extends StatelessWidget {
       appBar: AppBar(
         title: const Text("New Post"),
       ),
-      body: DropdownButton<String>(
-        items: sports.isNotEmpty
-            ? sports.map((test) {
-          return DropdownMenuItem(value: test, child: Text(test));
-        }).toList()
-            : const [],
-        value: sport,
-        onChanged: (sport) {
-          context.read<PostBloc>().add(PostSportChanged(sport: sport));
-        },
-      ),
-    );
+        body:Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextFormField(
+              decoration: const InputDecoration(
+                icon: Icon(Icons.accessibility),
+                hintText: 'What\'s name of your activty today ?',
+                labelText: 'Title of your activity *',
+              ),
+            ),
+            const SizedBox(height: 10),
+            DropdownButton<String>(
+            items: sports.isNotEmpty
+                ? sports.map((test) {
+                    return DropdownMenuItem(value: test, child: Text(test));
+                  }).toList()
+                : const [],
+            value: sport,
+            hint: const Text("Choisissez votre sport"),
+            onChanged: (sport) {
+              context.read<PostBloc>().add(PostSportChanged(sport: sport));
+            },
+            )
+          ])
+        );
   }
 }
