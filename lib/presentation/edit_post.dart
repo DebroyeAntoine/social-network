@@ -89,6 +89,16 @@ class EditPostView extends StatelessWidget {
                 const SizedBox(width: 30),
               ],
             ),
+            const SizedBox(height: 30),
+            TextFormField(
+              decoration: const InputDecoration(
+                hintText: 'How was your activity ?',
+                labelText: 'Description',
+              ),
+              onChanged: (description) {
+                context.read<PostBloc>().add(PostDescriptionChanged(description: description));
+              },
+            ),
           ])
         );
   }
