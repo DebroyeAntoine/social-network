@@ -21,6 +21,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     on<PostSubmitted>(_onSubmitted);
     on<NewPostLoaded>(_onNewPostLoaded);
     on<PostSportChanged>(_onPostSportChanged);
+    on<PostTitleChanged>(_onPostTitleChanged);
   }
   final PostRepository _postRepository;
 
@@ -48,13 +49,20 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     emit(state.copyWith(description: event.description));
   }
 
+  Future<void> _onPostTitleChanged(
+      PostTitleChanged event,
+      Emitter<PostState> emit,
+      ) async {
+    emit(state.copyWith(title: event.title));
+  }
+
   Future<void> _onSubmitted(
       PostSubmitted event,
       Emitter<PostState> emit,
       ) async {
     //emit(state.copyWith(status: PostStatus.loading));
     final post = (state.initialPost ?? Post(description: '', user: 'antoine',
-        date: Timestamp.now(), id: '', sport: 'vélo')).copyWith(
+        date: Timestamp.now(), id: '', sport: 'vélo', title: 'Test')).copyWith(
       description: state.description,
 
     );

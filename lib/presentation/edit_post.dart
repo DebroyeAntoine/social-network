@@ -50,6 +50,9 @@ class EditPostView extends StatelessWidget {
                 hintText: 'What\'s name of your activty today ?',
                 labelText: 'Title of your activity *',
               ),
+              onChanged: (title) {
+                context.read<PostBloc>().add(PostTitleChanged(title: title));
+              },
             ),
             const SizedBox(height: 10),
             DropdownButton<String>(

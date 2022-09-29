@@ -25,6 +25,15 @@ class PostSportChanged extends PostEvent {
   List<Object?> get props => [sport];
   }
 
+class PostTitleChanged extends PostEvent {
+  const PostTitleChanged({this.title});
+
+  final String? title;
+
+  @override
+  List<Object?> get props => [title];
+}
+
 class PostSubmitted extends PostEvent {
   const PostSubmitted();
 }
