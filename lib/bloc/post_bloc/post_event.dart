@@ -34,6 +34,15 @@ class PostTitleChanged extends PostEvent {
   List<Object?> get props => [title];
 }
 
+class PostDistanceChanged extends PostEvent {
+  const PostDistanceChanged({this.distance});
+
+  final double? distance;
+
+  @override
+  List<Object?> get props => [distance];
+}
+
 class PostSubmitted extends PostEvent {
   const PostSubmitted();
 }

@@ -54,19 +54,41 @@ class EditPostView extends StatelessWidget {
                 context.read<PostBloc>().add(PostTitleChanged(title: title));
               },
             ),
-            const SizedBox(height: 10),
-            DropdownButton<String>(
-            items: sports.isNotEmpty
-                ? sports.map((test) {
+            const SizedBox(height: 40),
+            Row(
+              children: [
+                DropdownButton<String>(
+                  items: sports.isNotEmpty
+                      ? sports.map((test) {
                     return DropdownMenuItem(value: test, child: Text(test));
                   }).toList()
-                : const [],
-            value: sport,
-            hint: const Text("Choisissez votre sport"),
-            onChanged: (sport) {
-              context.read<PostBloc>().add(PostSportChanged(sport: sport));
-            },
-            )
+                      : const [],
+                  value: sport,
+                  hint: const Text("Choisissez votre sport"),
+                  onChanged: (sport) {
+                    context.read<PostBloc>().add(PostSportChanged(sport: sport));
+                  },
+                ),
+                const SizedBox(width: 25),
+                const Text("Distance :"),
+                const SizedBox(width: 5),
+                Expanded(
+                  child: TextField(
+                    textAlign: TextAlign.end,
+                    /*decoration: const InputDecoration(
+                      labelText: 'Distance',
+                    ),*/
+                    keyboardType: TextInputType.number,
+                    onChanged: (distance) {
+                      context.read<PostBloc>().add(PostDistanceChanged(distance: double.parse(distance)));
+                    },
+                  ),
+                ),
+                const SizedBox(width: 5),
+                const Text("kms"),
+                const SizedBox(width: 30),
+              ],
+            ),
           ])
         );
   }
