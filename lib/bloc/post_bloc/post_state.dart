@@ -19,9 +19,9 @@ class PostState extends Equatable {
     this.initialPost,
     this.sports = const <String>[],
     this.sport,
-    this.title,
-    this.distance,
-    this.duration,
+    this.title = '',
+    this.distance = 0,
+    this.duration = const Duration(days:0),
   });
 
   bool get isNewPost => initialPost == null;
@@ -34,9 +34,9 @@ class PostState extends Equatable {
   final String description;
   final List<String> sports;
   final String? sport;
-  final String? title;
-  final double? distance;
-  final Duration? duration;
+  final String title;
+  final double distance;
+  final Duration duration;
 
   PostState copyWith({
     PostStatus? status,

@@ -12,7 +12,7 @@ class PostEntity extends Equatable {
   final String sport;
   final String title;
   final double distance;
-  final Duration duration;
+  final int duration;
 
   const PostEntity(this.id, this.description, this.date, this.user, this.image,
       this.sport, this.title, this.distance, this.duration);
@@ -47,7 +47,7 @@ class PostEntity extends Equatable {
       json['sport'] as String,
       json['title'] as String,
       json['distance'] as double,
-      json['duration'] as Duration,
+      json['duration'] as int,
     );
   }
 

@@ -135,6 +135,12 @@ class EditPostView extends StatelessWidget {
                 showMyDialog(context);
               },
             ),
+     ElevatedButton(
+    onPressed: () {
+      context.read<PostBloc>().add(PostSubmitted());
+    },
+    child: const Text("Valider"),
+     ),
           ])
         );
   },

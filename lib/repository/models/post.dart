@@ -32,7 +32,7 @@ class Post extends Equatable {
     this.image = '',
     required this.date,
     required this.user,
-    required this.sport,
+    this.sport = '',
     required this.title,
     required this.distance,
     required this.duration,
@@ -71,7 +71,7 @@ class Post extends Equatable {
 
   final double distance;
 
-  final Duration duration;
+  final int duration;
 
   /// Returns a copy of this todo with the given values updated.
   ///
@@ -85,7 +85,7 @@ class Post extends Equatable {
     String? sport,
     String? title,
     double? distance,
-    Duration? duration,
+    int? duration,
   }) {
     return Post(
       id: id ?? this.id,

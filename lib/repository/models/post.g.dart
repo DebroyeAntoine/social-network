@@ -12,10 +12,10 @@ Post _$PostFromJson(Map<String, dynamic> json) => Post(
       image: json['image'] as String? ?? '',
       date: Post._fromJson(json['date'] as int),
       user: json['user'] as String,
-      sport: json['sport'] as String,
+      sport: json['sport'] as String? ?? '',
       title: json['title'] as String,
       distance: (json['distance'] as num).toDouble(),
-      duration: Duration(microseconds: json['duration'] as int),
+      duration: json['duration'] as int,
     );
 
 Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
@@ -27,5 +27,5 @@ Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
       'user': instance.user,
       'title': instance.title,
       'distance': instance.distance,
-      'duration': instance.duration.inMicroseconds,
+      'duration': instance.duration,
     };

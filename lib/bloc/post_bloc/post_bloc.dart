@@ -77,11 +77,9 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       Emitter<PostState> emit,
       ) async {
     //emit(state.copyWith(status: PostStatus.loading));
-    final post = (state.initialPost ?? Post(description: '', user: 'antoine',
-        date: Timestamp.now(), id: '', sport: 'vélo', title: 'Test',
-        distance: 10, duration: Duration(days: 5))).copyWith(
-      description: state.description,
-
+    final post = (state.initialPost ?? Post(description: state.description, user: 'antoine',
+        date: Timestamp.now(), id: '', sport: state.sport ?? '', title: state.title,
+        distance: state.distance, duration: state.duration.inSeconds)
     );
 
     try {
