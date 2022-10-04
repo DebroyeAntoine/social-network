@@ -41,21 +41,8 @@ class Dashboard extends StatelessWidget {
           )
         ],
         //child: Builder( builder: (context) =>
-          child: Column(
-                  children: [
-                    Builder(
-                        builder: (context) => ElevatedButton(
-                            onPressed: () => BlocProvider.of<PostBloc>(context)
-                                .add(const PostSubmitted()),
-                            child: const Icon(Icons.add))),
-                    Expanded(child: _postsListView()),
-                  ],
+          child: _postsListView()),
 
-                  //)
-      ))
-
-        /*child: */
-      //),
     ));
   }
 
