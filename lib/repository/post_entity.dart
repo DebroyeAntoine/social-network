@@ -12,9 +12,10 @@ class PostEntity extends Equatable {
   final String sport;
   final String title;
   final double distance;
+  final Duration duration;
 
   const PostEntity(this.id, this.description, this.date, this.user, this.image,
-      this.sport, this.title, this.distance);
+      this.sport, this.title, this.distance, this.duration);
 
   Map<String, Object> toJson() {
     return {
@@ -26,13 +27,14 @@ class PostEntity extends Equatable {
       'sport': sport,
       'title': title,
       'distance': distance,
+      'duration': duration,
     };
   }
 
   @override
   String toString() {
     return 'PostEntity { date: $date, title: $title, sport: $sport user: $user, image: $image, '
-        'description: $description, id: $id distance: $distance }';
+        'description: $description, id: $id distance: $distance duration: $duration }';
   }
 
   static PostEntity fromJson(Map<String, Object> json) {
@@ -45,6 +47,7 @@ class PostEntity extends Equatable {
       json['sport'] as String,
       json['title'] as String,
       json['distance'] as double,
+      json['duration'] as Duration,
     );
   }
 
@@ -58,6 +61,7 @@ class PostEntity extends Equatable {
       snap.get('sport'),
       snap.get('title'),
       snap.get('distance'),
+      snap.get('duration'),
     );
   }
 
@@ -70,11 +74,12 @@ class PostEntity extends Equatable {
       'sport': sport,
       'title': title,
       'distance': distance,
+      'duration': duration,
     };
   }
 
   @override
   // TODO: implement props
-  List<Object?> get props => [id, description, image, user, date, sport, title, distance];
+  List<Object?> get props => [id, description, image, user, date, sport, title, distance, duration];
 
 }

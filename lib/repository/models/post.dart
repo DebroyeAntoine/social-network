@@ -35,6 +35,7 @@ class Post extends Equatable {
     required this.sport,
     required this.title,
     required this.distance,
+    required this.duration,
   })  : /*assert(
   id == null,
   'id can not be null and should be empty',
@@ -70,6 +71,8 @@ class Post extends Equatable {
 
   final double distance;
 
+  final Duration duration;
+
   /// Returns a copy of this todo with the given values updated.
   ///
   /// {@macro todo}
@@ -82,6 +85,7 @@ class Post extends Equatable {
     String? sport,
     String? title,
     double? distance,
+    Duration? duration,
   }) {
     return Post(
       id: id ?? this.id,
@@ -91,7 +95,8 @@ class Post extends Equatable {
       user: user ?? this.user,
       sport: sport ?? this.sport,
       title: title ?? this.title,
-      distance: distance ?? this.distance
+      distance: distance ?? this.distance,
+      duration: duration ?? this.duration,
     );
   }
 
@@ -102,14 +107,14 @@ class Post extends Equatable {
   JsonMap toJson() => _$PostToJson(this);
 
   @override
-  List<Object> get props => [id, description, image, date, user, sport, title, distance];
+  List<Object> get props => [id, description, image, date, user, sport, title, distance, duration];
 
   static int _toJson(Timestamp time) => time.millisecondsSinceEpoch;
   static Timestamp _fromJson (int time) =>
       Timestamp.fromMicrosecondsSinceEpoch(time);
 
   PostEntity toEntity() {
-    return PostEntity(id, description, date, user, image, sport, title, distance);
+    return PostEntity(id, description, date, user, image, sport, title, distance, duration);
   }
 
   static Post fromEntity(PostEntity entity) {
@@ -122,6 +127,7 @@ class Post extends Equatable {
       sport: entity.sport,
       title: entity.title,
       distance: entity.distance,
+      duration: entity.duration,
     );
   }
 }

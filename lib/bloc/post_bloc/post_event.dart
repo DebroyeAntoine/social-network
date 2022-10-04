@@ -43,6 +43,15 @@ class PostDistanceChanged extends PostEvent {
   List<Object?> get props => [distance];
 }
 
+class PostDurationChanged extends PostEvent {
+  const PostDurationChanged({this.duration});
+
+  final Duration? duration;
+
+  @override
+  List<Object?> get props => [duration];
+}
+
 class PostSubmitted extends PostEvent {
   const PostSubmitted();
 }

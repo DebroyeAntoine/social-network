@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_network/bloc/post_bloc/post_bloc.dart';
@@ -37,6 +38,8 @@ class EditPostView extends StatelessWidget {
   Widget build(BuildContext context) {
     final sports = context.select((PostBloc bloc) => bloc.state.sports);
     final sport = context.select((PostBloc bloc) => bloc.state.sport);
+    return BlocBuilder<PostBloc, PostState>(
+  builder: (context, state) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("New Post"),
@@ -99,7 +102,70 @@ class EditPostView extends StatelessWidget {
                 context.read<PostBloc>().add(PostDescriptionChanged(description: description));
               },
             ),
+            const SizedBox(height: 30),
+            Text("Durée: " + (context
+                          .read<PostBloc>()
+                          .state
+                          .duration
+                          ?.inHours
+                          .toString() ??
+                      '00') +
+                  'h:' +
+                  (context
+                          .read<PostBloc>()
+                          .state
+                          .duration
+                          ?.inMinutes
+                          .remainder(60)
+                          .toString() ??
+                      '00') +
+                  'm:' +
+                  (context
+                          .read<PostBloc>()
+                          .state
+                          .duration
+                          ?.inSeconds
+                          .remainder(60)
+                          .toString() ??
+                      '00') +
+                  's:'),
+              TextButton(
+              child: const Text('Durée'),
+              onPressed: () {
+                showMyDialog(context);
+              },
+            ),
           ])
         );
+  },
+);
+  }
+
+  void showMyDialog(BuildContext context) {
+    final bloc = context.read<PostBloc>();
+    showDialog<bool>(
+        context: context,
+        builder: (BuildContext context) {
+          return BlocProvider<PostBloc>.value(
+              value: bloc,
+              child: AlertDialog(
+                insetPadding: EdgeInsets.symmetric(horizontal: 20),
+                content: SizedBox(
+                    width: 200,
+                    height: 200,
+                    child: CupertinoTimerPicker(
+                        onTimerDurationChanged: (Duration duration) {
+                          bloc.add(PostDurationChanged(duration: duration));
+                    })),
+                actions: <Widget>[
+                  TextButton(
+                    child: const Text('OK'),
+                    onPressed: () {
+                      Navigator.of(context).pop(true);
+                    },
+                  ),
+                ],
+              ));
+        });
   }
 }
